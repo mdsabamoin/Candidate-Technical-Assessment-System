@@ -1,0 +1,8 @@
+[
+  { "id": 1, "language": "javascript", "question": "What is closure in JavaScript?", "options": ["A loop","A function with preserved scope","An object","A type of error"], "correctAnswer": 1 },
+  { "id": 2, "language": "javascript", "question": "Which method converts JSON to object?", "options": ["JSON.stringify","JSON.parse","JSON.convert","JSON.toObject"], "correctAnswer": 1 },
+  { "id": 3, "language": "python", "question": "Which of these is a Python tuple?", "options": ["[1,2]","(1,2)","{1,2}","<1,2>"], "correctAnswer": 1 },
+  { "id": 4, "language": "python", "question": "How to create a virtual environment?", "options": ["python -m venv env","create venv","venv new","python env create"], "correctAnswer": 0 },
+  { "id": 5, "language": "java", "question": "Which keyword is used for inheritance?", "options": ["implements","extends","inherits","super"], "correctAnswer": 1 },
+  { "id": 6, "language": "java", "question": "What is JVM?", "options": ["Java Virtual Machine","Java Variable Method","Joint Value Manager","Just Virtual Module"], "correctAnswer": 0 }
+]
