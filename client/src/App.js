@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import LanguageSelect from "./pages/LanguageSelect";
+import QuizPage from "./pages/QuizPage";
+import ResultPage from "./pages/ResultPage";
 
-function App() {
+export default function App() {
+  const [selectedLanguages, setSelectedLanguages] = useState(() => {
+    const raw = sessionStorage.getItem("selectedLanguages");
+    return raw ? JSON.parse(raw) : [];
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "selectedLanguages",
+      JSON.stringify(selectedLanguages)
+    );
+  }, [selectedLanguages]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <LanguageSelect
+            selected={selectedLanguages}
+            setSelected={setSelectedLanguages}
+          />
+        }
+      />
+      <Route path="/quiz" element={<QuizPage selected={selectedLanguages} />} />
+      <Route path="/result" element={<ResultPage />} />
+    </Routes>
   );
 }
-
-export default App;
