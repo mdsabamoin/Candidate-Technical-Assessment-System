@@ -24,8 +24,9 @@ app.use(
 
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, "client/build")));
 app.get("/", (req, res) => {
-  res.send("Backend server is running... ");
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
 const QUESTIONS_PATH = path.join(__dirname, "questions.json");
