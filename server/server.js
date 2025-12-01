@@ -7,7 +7,15 @@ const fs = require("fs");
 const multer = require("multer");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "candidate-technical-assessment-syst.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -65,8 +73,8 @@ app.post("/api/upload-resume", upload.single("resume"), (req, res) => {
 
 app.use("/uploads", express.static(UPLOAD_DIR));
 
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
+app.listen(port, () =>
+  console.log(`Server running on http://localhost:${port}`)
 );
