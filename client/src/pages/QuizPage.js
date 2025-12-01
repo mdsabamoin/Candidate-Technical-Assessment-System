@@ -135,6 +135,14 @@ export default function QuizPage({ selected }) {
 
       <div className="flex justify-between mb-4">
         <button
+          onClick={() => {
+            if (window.confirm("Submit the test?")) submit();
+          }}
+          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+        >
+          Submit Test
+        </button>
+        <button
           onClick={next}
           disabled={index === questions.length - 1}
           className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
@@ -142,15 +150,6 @@ export default function QuizPage({ selected }) {
           Next
         </button>
       </div>
-
-      <button
-        onClick={() => {
-          if (window.confirm("Submit the test?")) submit();
-        }}
-        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
-      >
-        Submit Test
-      </button>
     </div>
   );
 }
