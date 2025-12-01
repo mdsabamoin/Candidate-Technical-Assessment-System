@@ -7,15 +7,21 @@ const fs = require("fs");
 const multer = require("multer");
 
 const app = express();
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:3000",
+//       "https://candidate-technical-assessment-syst-eosin.vercel.app/",
+//     ],
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://candidate-technical-assessment-syst-eosin.vercel.app/",
-    ],
-    credentials: true,
+    origin: "*",
   })
 );
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
