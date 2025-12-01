@@ -12,14 +12,14 @@ export default function QuizPage({ selected }) {
   const [loading, setLoading] = useState(true);
 
   const [timer, setTimer] = useState(60);
-
+  const API = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     if (!selected || selected.length === 0) {
       nav("/");
       return;
     }
     axios
-      .get("http://localhost:4000/api/questions")
+      .get(`${API}/api/questions`)
       .then((res) => {
         const all = res.data.filter((q) => selected.includes(q.language));
         setQuestions(shuffle(all));

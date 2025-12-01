@@ -9,7 +9,7 @@ export default function ResultPage() {
 
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
-
+  const API = process.env.REACT_APP_API_BASE_URL;
   async function upload() {
     if (!file) {
       alert("Select a file");
@@ -18,11 +18,9 @@ export default function ResultPage() {
     const form = new FormData();
     form.append("resume", file);
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/upload-resume",
-        form,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      const res = await axios.post(`${API}/api/upload-resume`, form, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       if (res.data.success) {
         setMessage("Resume uploaded successfully");
         setFile(null);

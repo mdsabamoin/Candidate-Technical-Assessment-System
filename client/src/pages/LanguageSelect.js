@@ -6,9 +6,11 @@ export default function LanguageSelect({ selected, setSelected }) {
   const navigate = useNavigate();
   const [languages, setLanguages] = useState([]);
 
+  const API = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/questions")
+      .get(`${API}/api/questions`)
       .then((res) => {
         const langs = Array.from(new Set(res.data.map((q) => q.language)));
         setLanguages(langs);
