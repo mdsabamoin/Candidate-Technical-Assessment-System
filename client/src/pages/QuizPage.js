@@ -49,12 +49,6 @@ export default function QuizPage({ selected }) {
       setTimer(60);
     }
   }
-  function prev() {
-    if (index > 0) {
-      setIndex(index - 1);
-      setTimer(60);
-    }
-  }
 
   function submit() {
     let correct = 0;
@@ -140,13 +134,6 @@ export default function QuizPage({ selected }) {
       </div>
 
       <div className="flex justify-between mb-4">
-        <button
-          onClick={prev}
-          disabled={index === 0}
-          className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
-        >
-          Previous
-        </button>
         <button
           onClick={next}
           disabled={index === questions.length - 1}
