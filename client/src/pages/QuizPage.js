@@ -20,7 +20,7 @@ export default function QuizPage({ selected }) {
     }
     axios
       .get(
-        "https://candidate-technical-assessment-system.onrender.com/api/questions"
+        "https://candidate-technical-assessment-system-01.onrender.com/api/questions"
       )
       .then((res) => {
         const all = res.data.filter((q) => selected.includes(q.language));

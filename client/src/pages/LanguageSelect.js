@@ -11,7 +11,7 @@ export default function LanguageSelect({ selected, setSelected }) {
   useEffect(() => {
     axios
       .get(
-        "https://candidate-technical-assessment-system.onrender.com/api/questions"
+        "https://candidate-technical-assessment-system-01.onrender.com/api/questions"
       )
       .then((res) => {
         console.log("resss of languages", res);

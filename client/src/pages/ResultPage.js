@@ -19,7 +19,7 @@ export default function ResultPage() {
     form.append("resume", file);
     try {
       const res = await axios.post(
-        "https://candidate-technical-assessment-system.onrender.com/api/upload-resume",
+        "https://candidate-technical-assessment-system-01.onrender.com/api/upload-resume",
         form,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
