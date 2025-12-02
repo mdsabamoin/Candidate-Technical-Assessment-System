@@ -5,10 +5,10 @@ import axios from "axios";
 export default function LanguageSelect({ selected, setSelected }) {
   const navigate = useNavigate();
   const [languages, setLanguages] = useState([]);
-
-  // const API = process.env.REACT_APP_API_BASE_UR;
+  const [status, setStatus] = useState("idle"); // added
 
   useEffect(() => {
+    setStatus("pending"); // added
     axios
       .get(
         "https://candidate-technical-assessment-system-01.onrender.com/api/questions"
@@ -17,8 +17,12 @@ export default function LanguageSelect({ selected, setSelected }) {
         console.log("resss of languages", res);
         const langs = Array.from(new Set(res.data.map((q) => q.language)));
         setLanguages(langs);
+        setStatus("fulfilled"); // added
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setStatus("rejected"); // added
+      });
   }, []);
 
   function toggle(lang) {
@@ -38,6 +42,14 @@ export default function LanguageSelect({ selected, setSelected }) {
   return (
     <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md mt-10">
       <h1 className="text-2xl font-bold mb-6">Choose languages</h1>
+
+      {/* Loader added */}
+      {status === "pending" && (
+        <div className="w-full flex justify-center items-center mb-6">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-4 mb-6">
         {languages.map((lang) => (
           <label
@@ -54,6 +66,7 @@ export default function LanguageSelect({ selected, setSelected }) {
           </label>
         ))}
       </div>
+
       <button
         onClick={startTest}
         className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
