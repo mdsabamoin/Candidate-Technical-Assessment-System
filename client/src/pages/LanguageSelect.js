@@ -5,10 +5,10 @@ import axios from "axios";
 export default function LanguageSelect({ selected, setSelected }) {
   const navigate = useNavigate();
   const [languages, setLanguages] = useState([]);
-  const [status, setStatus] = useState("idle"); // added
+  const [status, setStatus] = useState("idle");
 
   useEffect(() => {
-    setStatus("pending"); // added
+    setStatus("pending");
     axios
       .get(
         "https://candidate-technical-assessment-system-01.onrender.com/api/questions"
@@ -17,11 +17,11 @@ export default function LanguageSelect({ selected, setSelected }) {
         console.log("resss of languages", res);
         const langs = Array.from(new Set(res.data.map((q) => q.language)));
         setLanguages(langs);
-        setStatus("fulfilled"); // added
+        setStatus("fulfilled");
       })
       .catch((err) => {
         console.error(err);
-        setStatus("rejected"); // added
+        setStatus("rejected");
       });
   }, []);
 
@@ -47,6 +47,7 @@ export default function LanguageSelect({ selected, setSelected }) {
       {status === "pending" && (
         <div className="w-full flex justify-center items-center mb-6">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <div> Render Initializing Please Wait ...</div>
         </div>
       )}
 
